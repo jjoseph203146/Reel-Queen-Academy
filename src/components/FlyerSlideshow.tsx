@@ -1,4 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import contentPowerHour from "../assets/flyers/content-power-hour.jpg";
+import keynoteRaniceaDouglas from "../assets/flyers/keynote-ranicea-douglas.jpg";
+import crownHerMentoring from "../assets/flyers/crownher-mentoring.jpg";
 
 type Slide = {
   id: number;
@@ -9,11 +12,23 @@ type Slide = {
   href?: string;
 };
 
-// Placeholder slides — import a flyer image and set `image` to replace one.
+// Flyers are shown in full (never cropped); a slide without `image` renders a placeholder.
 const slides: Slide[] = [
-  { id: 1, alt: "Flyer 1" },
-  { id: 2, alt: "Flyer 2" },
-  { id: 3, alt: "Flyer 3" },
+  {
+    id: 1,
+    image: contentPowerHour,
+    alt: "Content Power Hour, hosted by Alicia Fitts with morning keynote Ranicea Douglas. Saturday, September 26, 2026, 11 AM to 1 PM at The Grand on Washington, Augusta, GA. General admission $25.",
+  },
+  {
+    id: 2,
+    image: keynoteRaniceaDouglas,
+    alt: "Meet our morning keynote inspirational speaker Ranicea Douglas, author of The Pink Sheep, at the Content Power Hour on Saturday, September 26, 2026.",
+  },
+  {
+    id: 3,
+    image: crownHerMentoring,
+    alt: "Congratulations to CrownHer Mentoring Non-Profit, founded by Torrecka Davis, on being selected to receive a portion of Content Power Hour ticket sales.",
+  },
 ];
 
 const AUTOPLAY_MS = 5000;
@@ -59,7 +74,7 @@ export default function FlyerSlideshow() {
   return (
     <section className="bg-cream-50 px-6 py-[64px]">
       <div
-        className="relative max-w-[900px] mx-auto"
+        className="relative max-w-[520px] mx-auto"
         role="region"
         aria-roledescription="carousel"
         aria-label="Featured flyers"
@@ -82,7 +97,7 @@ export default function FlyerSlideshow() {
             {slides.map((slide, i) => (
               <div
                 key={slide.id}
-                className="w-full shrink-0 aspect-[16/9]"
+                className="w-full shrink-0 aspect-[4/5]"
                 role="group"
                 aria-roledescription="slide"
                 aria-label={`${i + 1} of ${count}`}
@@ -132,7 +147,20 @@ export default function FlyerSlideshow() {
 
 function SlideContent({ slide, active }: { slide: Slide; active: boolean }) {
   const content = slide.image ? (
-    <img src={slide.image} alt={slide.alt} className="w-full h-full object-cover" />
+    <div className="relative w-full h-full overflow-hidden bg-plum-900">
+      {/* Blurred copy fills the frame behind flyers that don't match its shape. */}
+      <img
+        src={slide.image}
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover scale-110 blur-2xl opacity-60"
+      />
+      <img
+        src={slide.image}
+        alt={slide.alt}
+        className="relative w-full h-full object-contain"
+      />
+    </div>
   ) : (
     <div className="w-full h-full flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-[#F3E9F2] via-white to-[#EFE3F0] border-2 border-dashed border-[#D8C8DC] rounded-2xl text-plum-500">
       <span className="font-display font-semibold text-[22px] sm:text-[30px]">
