@@ -1,4 +1,5 @@
 import Hero from "./components/Hero";
+import FlyerSlideshow from "./components/FlyerSlideshow";
 import ProgramDetails from "./components/ProgramDetails";
 import WhatsIncluded from "./components/WhatsIncluded";
 import MeetCoach from "./components/MeetCoach";
@@ -12,6 +13,7 @@ export default function App() {
   return (
     <div className="font-sans bg-plum-900 text-cream-100 w-full">
       <Hero />
+      <FlyerSlideshow />
       <ProgramDetails />
       <WhatsIncluded />
       <MeetCoach />
