@@ -36,8 +36,8 @@ export default function MeetCoach() {
             </div>
 
             <p className="m-0 text-base leading-[1.8] text-[#3F2C46]">
-              Alicia Fitts is a Wealth &amp; Branding Strategist, passionate
-              Christian Business Coach, and the founder of Reel Queen
+              Alicia Fitts is a Visibility, Credibility &amp; Opportunity Strategist,
+              passionate Christian Business Coach, and the founder of Reel Queen
               Academy. With over 15 years of marketing experience and 8
               years in corporate business development, she helps
               entrepreneurs build profitable brands, increase their
